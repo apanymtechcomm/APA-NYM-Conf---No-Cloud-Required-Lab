@@ -180,11 +180,18 @@ tool:
   pre-1950, and the 1922 building at FAR 5.6**?
 - Is the basemap actually greyscale? (CARTO now serves "API KEY REQUIRED"
   watermark tiles — if you see that, the agent substituted a dead basemap.)
-- Where does intensity concentrate — and does that match the policy story
-  from segment 5?
 - Does the map **explain itself**? (A graduated ramp needs a legend saying
   what the colors mean and what BuiltFAR is — if the agent skipped one, that's
   a cartographic miss worth asking it to fix.)
+
+**Reading the ramp — say this out loud:** BuiltFAR (floor area ÷ lot area) is
+*intensity*, one axis. The 5 quantile classes hold ~37 parcels each, so the
+color steps are **not** equal FAR jumps: classes 2–4 squeeze through FAR
+0.8–2.2 while class 5 swallows 2.2–6.0. And FAR says nothing about
+*activity* — a FAR-5.6 factory and a FAR-5.6 office wear the same color. The
+1922 magenta site is still industrial; that fact is in the attributes, not
+the color. The color scheme is an interpretive choice, and stating it is part
+of the map's claim.
 
 **The synthesis question (and your closing sentence):** where do
 development pressure, the Industrial Plan's retention goal, and the EIS's
