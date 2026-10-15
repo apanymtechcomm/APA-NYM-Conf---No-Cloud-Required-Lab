@@ -184,3 +184,31 @@ available). No improvisation needed:
   magenta) + IBZ boundary; saved as instructor/finale_model_map.png
 - Observed gap (now an audit-list item): the map had no legend explaining the
   color ramp — students should ask the agent to add one.
+
+## Segment 6 method correction — headroom replaces BuiltFAR (2026-10-14)
+
+Andrew challenged the BuiltFAR ramp: "are these actual changes?" Correct —
+BuiltFAR is existing built form, not the rezoning's change. The change is the
+PERMITTED intensity. Fees tables confirmed from the FEIS land-use chapter
+(pp. 56-58, extracted with pymupdf): M1-4A cap 5.0, M1-5A cap 6.5, M1-6A cap
+8.0 (max commercial/manufacturing FAR; paired residential components
+separately, e.g. M1-4A/R8A up to 7.2 with IH). Headroom = cap - BuiltFAR per
+parcels.
+
+Corrected key (186 rezoned parcels):
+- Total unused development permission: 12,960,567 sf vs 4,343,521 sf standing
+  today — the rezoning tripled development capacity on those parcels alone.
+- Single biggest headroom parcels: BBL 4004260010 (M1-6A, FAR 0, 56,000 sf
+  lot) = 0.45M sf of new permission; 4004260075 = 0.17M sf. The Dutch-Kills
+  IBZ component is essentially all high-headroom (FAR 0 lots).
+- Quantile breaks for the ramp: 0-3.40 / 3.43-4.07 / 4.10-5.42 / 5.43-5.85 /
+  5.86-8.00.
+- Method notes: cap from the FEIS (documented); residential component excluded
+  from the commercial/manufacturing cap (stated simplification); floors over
+  cap clamp to 0; headroom assumes build-out to the cap (interpretation,
+  labeled as such).
+
+Student prompt + audit list updated; teacher note: BuiltFAR was context, not
+the change. Map engine-verified via MCP (graduated on Headroom, 5 quantile
+classes); MODEL RE-VALIDATION of the headroom prompt NOT yet run — the earlier
+laguna pass validated the BuiltFAR variant. Retest flagged.

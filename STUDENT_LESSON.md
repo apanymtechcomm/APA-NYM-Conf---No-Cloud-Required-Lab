@@ -160,13 +160,16 @@ print from the script). Then type `/reload-mcp` in your session.
 
 ```
 Using the parcel file at <your clone path>/data/lic_ibz_parcels.geojson, set
-up a RustGIS map of the Long Island City IBZ sites modified by the OneLIC
-rezoning: filter to the paired zoning districts (ZoneDist1 of M1-4A, M1-5A,
-or M1-6A — the paired manufacturing/residential districts OneLIC created),
-add a greyscale Esri basemap, apply a graduated color scheme based on
-BuiltFAR, and render the map. Then tell me: how many sites, how many are
-still industrial (LandUse 06), how many predate 1950, and which
-still-industrial site has the highest BuiltFAR and what year was it built?
+up a RustGIS map of the sites the OneLIC rezoning actually changed. The
+rezoning replaced zoning permission: max commercial/manufacturing FAR is now
+5.0 in M1-4A, 6.5 in M1-5A, and 8.0 in M1-6A (FEIS, land-use chapter,
+pp. 56-58). Compute each rezoned parcel's unused development permission —
+the cap minus its BuiltFAR — filter to the paired districts (ZoneDist1
+M1-4A, M1-5A, M1-6A), add a greyscale Esri basemap, apply a graduated color
+scheme on that headroom, and render the map. Then tell me: total unused
+permission in square feet, how it compares to the building stock that exists
+today, how many parcels, and which single parcels carry the most new
+permission.
 ```
 
 **What you should see:** the agent chains real tools — it filters the data,
@@ -174,23 +177,25 @@ opens RustGIS, loads the parcels, applies the graduated symbology, and
 renders the map back into the chat.
 
 **Audit what it produces** — the lab's whole discipline, now pointed at a
-tool:
-- Does the map show the **186 rezoned parcels** only, colored by intensity?
-- Do its numbers match the key: **186 sites, 103 still industrial, 131
-  pre-1950, and the 1922 building at FAR 5.6**?
+tool. Do its numbers match the key: **186 rezoned parcels; ~12.96 M sf of
+unused development permission vs 4.34 M sf standing today — the rezoning
+tripled development capacity on paper; the single biggest headroom parcel is
+a 56,000 sf M1-6A lot (FAR 0) carrying ~450,000 sf of new permission by
+itself.** Then check:
 - Is the basemap actually greyscale? (CARTO now serves "API KEY REQUIRED"
   watermark tiles — if you see that, the agent substituted a dead basemap.)
 - Does the map **explain itself**? (A graduated ramp needs a legend saying
-  what the colors mean and what BuiltFAR is — if the agent skipped one, that's
+  what the colors mean and what Headroom is — if the agent skipped one, that's
   a cartographic miss worth asking it to fix.)
 
-**Reading the ramp — say this out loud:** BuiltFAR (floor area ÷ lot area) is
-*intensity*, one axis. The 5 quantile classes hold ~37 parcels each, so the
-color steps are **not** equal FAR jumps: classes 2–4 squeeze through FAR
-0.8–2.2 while class 5 swallows 2.2–6.0. And FAR says nothing about
-*activity* — a FAR-5.6 factory and a FAR-5.6 office wear the same color. The
-1922 magenta site is still industrial; that fact is in the attributes, not
-the color. The color scheme is an interpretive choice, and stating it is part
+**Reading the ramp — say this out loud:** Headroom = permitted FAR (5.0 /
+6.5 / 8.0 from the FEIS) minus BuiltFAR = **unused development permission**.
+It is the change the rezoning made — quantified. But read its limits the
+same way: headroom assumes build-out to the cap, and real development
+depends on market demand, E-848 remediation, and financing; a factory at
+FAR 5.6 under a 6.5 cap has almost no headroom even though it is a century
+of industrial history. BuiltFAR on its own was never the *change* — it was
+context. The color scheme is an interpretive choice, and stating it is part
 of the map's claim.
 
 **The synthesis question (and your closing sentence):** where do
