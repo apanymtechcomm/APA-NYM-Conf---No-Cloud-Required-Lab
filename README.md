@@ -19,6 +19,8 @@ summaries/                 ← three pre-assembled document summaries (~9 KB)
   OneLIC_Summary.md          every fact cited to its source chapter
   FEIS_25DCP001Q_Summary.md
   NYC_Industrial_Plan_Summary.md
+sources/                   ← the 8 original planning PDFs the summaries cite
+                             (not needed to run the lab)
 data/
   lic_ibz_parcels.csv      ← MapPLUTO 26v2 clipped to the official NYCEDC
                              LIC IBZ boundary (1,176 lots)
@@ -56,8 +58,10 @@ Re-smoke-test the morning of class: the free catalog churns.
 
 ## Provenance
 
-All underlying documents are public NYC sources (URLs in
-`STUDENT_LESSON.md`). MapPLUTO 26v2 (August 2026 vintage) clipped to the
-official NYCEDC IBZ boundary; CSV hash recorded in
-`instructor/DRY_RUN_LOG.md`. The lab package was built and validated
-2026-10-14; test evidence in `instructor/`.
+The `sources/` folder holds the eight original planning PDFs the summaries were
+built from — the OneLIC Final Plan Book, six FEIS chapters (CEQR 25DCP001Q),
+and the final NYC Industrial Plan — all downloaded from official NYC sources;
+URLs, hashes, and per-file details in `instructor/DRY_RUN_LOG.md`. The parcel
+CSV is MapPLUTO 26v2 (August 2026 vintage) clipped to the official NYCEDC IBZ
+boundary. The lab package was built and validated 2026-10-14; test evidence in
+`instructor/`.

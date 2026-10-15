@@ -173,21 +173,6 @@ disagree, the document wins — and it's worth noticing which one you read.
 
 ---
 
-## The documents behind the summaries (for deep-dives)
-
-Everything in `summaries/` traces to these official sources. The full PDFs are
-**not** in this repo (they're large); fetch them if you want to verify a
-citation — a habit worth building:
-
-| Document | Source |
-|---|---|
-| OneLIC plan page + Final Plan Book | https://www.nyc.gov/content/planning/pages/our-work/plans/queens/lic-neighborhood-plan |
-| OneLIC ZAP project (ULURP applications) | https://zap.planning.nyc.gov/projects/2024Q0304 |
-| OneLIC FEIS (CEQR 25DCP001Q) | via the ZAP project page above |
-| NYC Industrial Plan (final, Dec 2025) | https://www.nyc.gov/assets/planning/downloads/pdf/our-work/plans/citywide/nyc-industrial-plan/nyc-industrial-plan-final.pdf |
-| MapPLUTO (parcel data) | https://www.nyc.gov/content/planning/pages/resources/datasets/mappluto-pluto-change |
-| Industrial Business Zone boundaries | https://edc.nyc/industry/industrial-and-manufacturing |
-
 ## About the numbers
 
 Every number in this lesson was verified against the actual documents and
