@@ -93,36 +93,28 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 **Why worded this way:** the original open-ended version made the model explore (measured 5.5 min on the primary model, over budget). A first fix told it to *verify* the counts in the documents — which caused the same overrun, because verification means extra searches. Giving the counts as stated facts with a light flag-if-you-see-it instruction keeps the segment inside budget without doing the thinking for the model.
 **Expected:** the two-column table; 17,000+ acres protected; **Primary/Secondary Industrial Areas stated explicitly as policy guideposts, not zoning**; OneLIC edge housing vs. core holding. (Bonus if flagged: the plan text says "72 ideas" while the city's project page says "73 recommendations.")
 
-### 18:30–20:00 — Map the IBZ's key properties (RustGIS; the finale)
-**This segment is student-driven — no agent.** Sometimes the planner's eye on a map is the tool; it also closes the lab with the human judgment the lab has been building toward.
+### 18:30–20:00 — The finale: the agent drives real GIS software (RustGIS MCP)
+**The lab's wow moment.** Everything so far happened in chat; now the agent reaches out and drives an actual GIS application, and the map renders back into the conversation. The chat is the interface; the tools are real — that's the takeaway of the whole lab.
 
-**The link (loads the 1,176 IBZ lots into the RustGIS web app on a greyscale basemap — nothing to install):**
-`https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`
+**The prompt (student gives it verbatim):**
+> Using the parcel file at `<clone>/data/lic_ibz_parcels.geojson`, set up a RustGIS map of the Long Island City IBZ sites modified by the OneLIC rezoning: filter to the paired zoning districts (ZoneDist1 of M1-4A, M1-5A, or M1-6A — the paired manufacturing/residential districts OneLIC created), add a greyscale Esri basemap, apply a graduated color scheme based on BuiltFAR, and render the map. Then tell me: how many sites, how many are still industrial (LandUse 06), how many predate 1950, and which still-industrial site has the highest BuiltFAR and what year was it built?
 
-**Verification status (2026-10-14):** `?data=` verified working in the web app (app fetches the GeoJSON). `?tiles=` is a documented RustGIS URL parameter and the Esri template was rendered end-to-end through the same engine via the MCP server (clean greyscale, no watermarks, CORS-open, keyless). The web app's tile-param render could not be visually confirmed from the automated browser (WASM/CDP daemon timeouts; worker fetches invisible to performance entries) — the morning-of checklist has a one-click check. **Manual fallback (always works): Home › Add › Basemap › Add Tile Layer → paste the tile URL**, or students drop `data/lic_ibz_parcels.geojson` onto the map.
+**What the agent must chain (the tool sequence):** terminal (filter GeoJSON to M1A districts → rezoned layer) → rustgis `layer.addData` → `map.addTiles` (Esri Light Gray raster) → `layer.symbology` (graduated, BuiltFAR, 5 quantile classes) → `layer.zoomTo` → `view_map` (the map renders as an image in the chat).
 
-**Exercise:**
-1. Open the link (parcels + IBZ boundary + greyscale basemap appear).
-2. Attribute table → filter to the **paired districts M1-4A / M1-5A / M1-6A** (the "A" suffix = OneLIC's new paired districts; plain M1-1/3/4 unchanged) → **186 rezoned parcels**.
-3. **Style › Symbology → Graduated Colors → BuiltFAR → 5 quantile classes → pick a ramp.** BuiltFAR = development intensity.
-4. Cross-reference the segment-3 memory: still-industrial sites (LandUse 06) vs the Industrial Plan's retention goal; pre-1950 vintage vs the FEIS's E-848 hazmat consideration. Label interpretation as interpretation.
-
-**Verified answers (the instructor key):**
-- **186 rezoned parcels**: M1-5A = 83, M1-4A = 66, M1-6A = 37 (no M1-2A/3A lots in this dataset)
-- **103 of 186 still industrial** (LandUse 06) — the Industrial Plan retention goal meets OneLIC's upzoning here
-- **131 of 186 pre-1950** — industrial history → contamination potential → E-848 (Phase I ESA + remediation before ground disturbance)
-- **77 sites are both pre-1950 AND still industrial** — the "special consideration" set: retention policy, hazmat constraint, and rezoning on one parcel
-- BuiltFAR among rezoned: 0.18–6.0, median 1.06; 15 parcels at FAR ≥ 4
+**Verified answers (the key):**
+- **186 rezoned parcels**: M1-5A = 83, M1-4A = 66, M1-6A = 37
+- **103 of 186 still industrial** (LandUse 06) — Industrial Plan retention goal meets OneLIC's upzoning
+- **131 of 186 pre-1950** — industrial history → E-848 hazmat consideration (Phase I ESA + remediation before ground disturbance); **77 sites are both**
+- **Most intense still-industrial rezoned site: a 1922 building at FAR 5.6** (BBL 4004090001, 112,000 sf); runners-up 1925 @ FAR 5.2, 1930 @ FAR 4.76
 - Intensity concentrates along the waterfront edge of the southern cluster (verified in the MCP render)
-- **The key finding: the most intense still-industrial rezoned site is a 1922 building at FAR 5.6** (BBL 4004090001, 112,000 sf) — runners-up: 1925 at FAR 5.2, 1930 at FAR 4.76. Intensity, retention policy, and E-848 land on century-old lots.
-- (Pre-built answer layer: `rezoned_sites.geojson` in instructor materials.)
 
 **Teaching points:**
-- The map shows where policy tensions STACK: a parcel can be simultaneously upzoned, protected by the retention plan, and constrained by the EIS — and all three are documented facts, not vibes.
-- E-848 applies to FEIS development sites, not MapPLUTO records — age/use is an interpretation. Making students say which is which is the lesson.
-- RustGIS's graduated symbology (quantile on BuiltFAR) is the cartographic skill: color ramps encode intensity; the ramp choice is a communicative choice.
+- The agent drove real GIS software from a chat prompt — MCP tool-chaining is the mechanism, and it's the same pattern for any tool a practice has (CAD, energy models, databases).
+- Auditing the agent's TOOL WORK is the same discipline as auditing its text: check the parcel count, the color field, the basemap (CARTO serves watermark tiles — a live "verify the tool output" moment).
+- E-848 applies to FEIS development sites, not MapPLUTO records — age/use flags are interpretation. Label which is which.
+- The student still writes the closing sentence: one mapped fact + one policy fact + what they mean together. The agent set up the map; the judgment is the planner's.
 
-**Close:** one sentence written by the student — one mapped fact + one policy fact + what they mean together, checked against the agent's memory entry from segment 3.
+**Validation status:** laguna-s-2.1:free test run in progress at build time (2026-10-14) — a fresh session given the verbatim prompt with the rustgis MCP + terminal available; results folded into the session notes when it lands. Manual fallback if the MCP can't be installed or driven: the agent opens the pre-built `?data=` map link (parcels + boundary + greyscale `?tiles=`) in a browser — same map, less wow.
 
 
 ---

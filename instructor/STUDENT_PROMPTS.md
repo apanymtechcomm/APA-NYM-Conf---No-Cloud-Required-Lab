@@ -128,46 +128,54 @@ Check: the Industrial Plan (final December 19, 2025, required by Local Law 172
 of 2023) protects 17,000+ acres of designated industrial land — but its
 Primary/Secondary Industrial Areas are policy guideposts, **not** zoning.
 
-### 6. Map the conflict: rezoning intensity × industrial retention × E-848 (18:30–20:00)
+### 6. The finale: the agent drives real GIS software (18:30–20:00)
 
-**This segment you drive yourself — no agent.** Sometimes the planner's eye on
-a map is the tool.
+**The point of this segment:** everything so far happened in chat. Now your
+agent reaches out and drives an actual GIS application — RustGIS — and the
+map comes back into your conversation. This is what agent-based AI means for
+planning work: the chat is the interface, but the tools are real.
 
-1. Open this link — it loads the IBZ's 1,176 tax lots, the official IBZ
-   boundary, and a greyscale basemap into the RustGIS web app (nothing to
-   install):
+**One-time setup (skip if done in step 5 of Setup):** run
+`scripts/setup-rustgis-mcp.sh` from this repo — it installs the RustGIS MCP
+server and wires it into Hermes (~30 MB, one minute; Windows instructions
+print from the script). Then type `/reload-mcp` in your session.
 
-   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/ibz_boundary.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}**
+**The prompt — one prompt, and watch it work:**
 
-2. Find the sites the rezoning modified: in the attribute table, filter to
-   the **paired districts M1-4A, M1-5A, M1-6A** (the "A" suffix marks the
-   paired districts OneLIC created — 186 parcels; the plain M1-1/3/4 are
-   unchanged).
+```
+Using the parcel file at <your clone path>/data/lic_ibz_parcels.geojson, set
+up a RustGIS map of the Long Island City IBZ sites modified by the OneLIC
+rezoning: filter to the paired zoning districts (ZoneDist1 of M1-4A, M1-5A,
+or M1-6A — the paired manufacturing/residential districts OneLIC created),
+add a greyscale Esri basemap, apply a graduated color scheme based on
+BuiltFAR, and render the map. Then tell me: how many sites, how many are
+still industrial (LandUse 06), how many predate 1950, and which
+still-industrial site has the highest BuiltFAR and what year was it built?
+```
 
-3. Style the layer: **Style › Symbology → Graduated Colors → field BuiltFAR
-   → 5 classes → pick a ramp.** BuiltFAR is development intensity.
+**What you should see:** the agent chains real tools — it filters the data,
+opens RustGIS, loads the parcels, applies the graduated symbology, and
+renders the map back into the chat.
 
-4. Cross-reference the documents distilled in segment 3:
-   - **Still-industrial (LandUse 06):** the NYC Industrial Plan wants these
-     retained — yet they now sit in rezoned districts (**103 of 186**).
-   - **Pre-1950 vintage (131 of 186):** a century of industrial history —
-     the exposure pathway the FEIS hazmat chapter describes; **E-848**
-     requires a Phase I ESA and remediation before ground disturbance.
-     **77 sites are both.**
+**Audit what it produces** — the lab's whole discipline, now pointed at a
+tool:
+- Does the map show the **186 rezoned parcels** only, colored by intensity?
+- Do its numbers match the key: **186 sites, 103 still industrial, 131
+  pre-1950, and the 1922 building at FAR 5.6**?
+- Is the basemap actually greyscale? (CARTO now serves "API KEY REQUIRED"
+  watermark tiles — if you see that, the agent substituted a dead basemap.)
+- Where does intensity concentrate — and does that match the policy story
+  from segment 5?
 
-5. **The question the map answers:** where do development pressure, the
-   Plan's retention goal, and the EIS's hazmat constraints land on the same
-   parcel? The key: the most intense still-industrial rezoned site is a
-   **1922 building at FAR 5.6** — intensity, retention policy, and E-848
-   all meet on one lot.
+**The synthesis question (and your closing sentence):** where do
+development pressure, the Industrial Plan's retention goal, and the EIS's
+E-848 hazmat consideration land on the same parcel? Write one sentence: one
+mapped fact, one policy fact, what they mean together. The agent set up the
+map; the judgment is still yours.
 
-**Label interpretation as interpretation** — "this 1922 factory is a prime
-E-848 candidate" is a planner's inference from age and use; the FEIS assigns
-E-848 to development sites, not MapPLUTO records.
-
-**Close the lab with one sentence** — written by you, checked against your
-agent's memory entry: one mapped fact, one policy fact, and what they mean
-for the IBZ together.
+*Fallback if the MCP won't install or the model can't drive it:* the agent
+opens the pre-built map link in a browser — `?data=` parcels + boundary +
+`?tiles=` greyscale — and walks you through it. Same map, less wow.*
 
 ---
 

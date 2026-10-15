@@ -29,8 +29,12 @@ How these were built (for your records, all reproducible):
 - Doc pack: 8 PDFs downloaded from official NYC sources, PDF-validated,
   SHA-256-matched. Sources and inventory in `DRY_RUN_LOG.md`.
 
-## 2. Day-of checks (morning of class, ~5 minutes)
+## 2. Day-of checks (morning of class, ~10 minutes)
 
+- [ ] **RustGIS MCP installed + active** — run `scripts/setup-rustgis-mcp.sh`
+      (from the lab repo; ~30 MB, one minute; Windows instructions print from
+      the script), then `/reload-mcp` in a test session. Verify the agent
+      sees the tools: ask "list the rustgis tools you have available".
 - [ ] **Model smoke test** — one 10-token call to each student model. The free
       catalog churns; a model can disappear overnight (one listed `:free` model
       was found delisted with a 404):
