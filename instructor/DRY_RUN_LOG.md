@@ -165,3 +165,4 @@ A generic query such as `"OneLIC Final Environmental Impact Statement"` did **no
 - **Retrieval:** all three final commands returned the intended document as result 1 after index repair.
 - **Unrelated maintenance warnings:** `lancekeeper.py optimize` could not build vector indexes for the 77-row `observations` table or empty `projects` table, and emitted repeated small-table k-means warnings for the legacy 3,380-row `sessions` table. These tables were not part of this task and their record counts were unchanged.
 - **Pipeline metadata limitation:** file ingestion records the ingestion date rather than the source publication date and leaves the `url` field empty. Official source dates and URLs are preserved in this log.
+mapping-segment composite verified via MCP render: parcels + IBZ boundary + Esri Light Gray; segment 6 conflict-map key: 186 rezoned / 103 industrial / 131 pre-1950 / 77 both; key finding = 1922 building FAR 5.6 (BBL 4004090001).

@@ -102,24 +102,25 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 **Verification status (2026-10-14):** `?data=` verified working in the web app (app fetches the GeoJSON). `?tiles=` is a documented RustGIS URL parameter and the Esri template was rendered end-to-end through the same engine via the MCP server (clean greyscale, no watermarks, CORS-open, keyless). The web app's tile-param render could not be visually confirmed from the automated browser (WASM/CDP daemon timeouts; worker fetches invisible to performance entries) — the morning-of checklist has a one-click check. **Manual fallback (always works): Home › Add › Basemap › Add Tile Layer → paste the tile URL**, or students drop `data/lic_ibz_parcels.geojson` onto the map.
 
 **Exercise:**
-1. Open the link (appears with the parcels on a basemap).
-2. Attribute table → filter to **LandUse 06** → sort by **BldgArea** descending.
-3. Click the top result, find it on the map, note **YearBuilt**.
-4. Pan between the big sites — do they cluster?
+1. Open the link (parcels + IBZ boundary + greyscale basemap appear).
+2. Attribute table → filter to the **paired districts M1-4A / M1-5A / M1-6A** (the "A" suffix = OneLIC's new paired districts; plain M1-1/3/4 unchanged) → **186 rezoned parcels**.
+3. **Style › Symbology → Graduated Colors → BuiltFAR → 5 quantile classes → pick a ramp.** BuiltFAR = development intensity.
+4. Cross-reference the segment-3 memory: still-industrial sites (LandUse 06) vs the Industrial Plan's retention goal; pre-1950 vintage vs the FEIS's E-848 hazmat consideration. Label interpretation as interpretation.
 
-**Verified answers (top 5 industrial by building area):**
-| BBL | BldgArea | YearBuilt | BuiltFAR | Note |
-|---|---|---|---|---|
-| 4000680038 | 777,258 sf | **2022** | 3.82 | newest of the big five |
-| 4002940106 | 654,615 sf | **2024** | 3.40 | entirely factory use |
-| 4004760001 | 407,140 sf | **1920** | 4.18 | century-old, still intense |
-| 4002500001 | 322,390 sf | 1924 | 2.69 | |
-| 4002450009 | 301,000 sf | 1951 | 3.54 | 175,200 sf factory |
+**Verified answers (the instructor key):**
+- **186 rezoned parcels**: M1-5A = 83, M1-4A = 66, M1-6A = 37 (no M1-2A/3A lots in this dataset)
+- **103 of 186 still industrial** (LandUse 06) — the Industrial Plan retention goal meets OneLIC's upzoning here
+- **131 of 186 pre-1950** — industrial history → contamination potential → E-848 (Phase I ESA + remediation before ground disturbance)
+- **77 sites are both pre-1950 AND still industrial** — the "special consideration" set: retention policy, hazmat constraint, and rezoning on one parcel
+- BuiltFAR among rezoned: 0.18–6.0, median 1.06; 15 parcels at FAR ≥ 4
+- Intensity concentrates along the waterfront edge of the southern cluster (verified in the MCP render)
+- **The key finding: the most intense still-industrial rezoned site is a 1922 building at FAR 5.6** (BBL 4004090001, 112,000 sf) — runners-up: 1925 at FAR 5.2, 1930 at FAR 4.76. Intensity, retention policy, and E-848 land on century-old lots.
+- (Pre-built answer layer: `rezoned_sites.geojson` in instructor materials.)
 
 **Teaching points:**
-- The two largest industrial buildings postdate the IBZ by more than a decade — industrial investment is current, not historical. The "dying industrial district" narrative does not survive contact with the map.
-- Old ≠ obsolete: the 1920 parcel carries the highest FAR of the five.
-- Edge pressure (OneLIC's housing capacity) reads differently once students see where the industrial core actually sits.
+- The map shows where policy tensions STACK: a parcel can be simultaneously upzoned, protected by the retention plan, and constrained by the EIS — and all three are documented facts, not vibes.
+- E-848 applies to FEIS development sites, not MapPLUTO records — age/use is an interpretation. Making students say which is which is the lesson.
+- RustGIS's graduated symbology (quantile on BuiltFAR) is the cartographic skill: color ramps encode intensity; the ramp choice is a communicative choice.
 
 **Close:** one sentence written by the student — one mapped fact + one policy fact + what they mean together, checked against the agent's memory entry from segment 3.
 

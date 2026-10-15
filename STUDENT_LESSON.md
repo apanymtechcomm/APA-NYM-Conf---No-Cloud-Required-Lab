@@ -139,43 +139,57 @@ interpretation.
 172 of 2023) protects 17,000+ acres of designated industrial land — but its
 Primary/Secondary Industrial Areas are policy guideposts, **not** zoning.
 
-### 6. Map the IBZ's key properties (18:30–20:00)
+### 6. Map the conflict: rezoning intensity × industrial retention × E-848 (18:30–20:00)
 
 **This segment you drive yourself — no agent.** Sometimes the planner's eye on
 a map is the tool.
 
-1. Open this link — it loads the IBZ's 1,176 tax lots into the RustGIS web
-   app on a clean greyscale basemap (nothing to install):
+1. Open this link — it loads the IBZ's 1,176 tax lots, the official IBZ
+   boundary, and a greyscale basemap into the RustGIS web app (nothing to
+   install):
 
-   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}**
+   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/ibz_boundary.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}**
 
-   (Fallback if the basemap doesn't appear: open web.rustgis.app, then
-   **Home › Add › Basemap › Add Tile Layer** and paste
-   `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`
-   — or download `data/lic_ibz_parcels.geojson` from this repo and drop the
-   file onto the map.)
+2. Find the sites the rezoning modified: in the attribute table, filter to
+   the **paired districts M1-4A, M1-5A, M1-6A** (the "A" suffix marks the
+   paired manufacturing/residential districts OneLIC created — 186 parcels;
+   the plain M1-1/3/4 are unchanged).
 
-2. Open the attribute table, filter to **LandUse 06** (industrial), and sort
-   by **BldgArea** descending.
-3. Click the top result and find it on the map. Note its **YearBuilt**.
-4. Pan to the other big sites — do they cluster?
+3. Style the layer: **Style › Symbology → Graduated Colors → field BuiltFAR
+   → 5 classes → pick a ramp.** BuiltFAR is development intensity — how much
+   building sits on each lot.
 
-**The question the map answers:** where are the IBZ's major industrial sites,
-and how old are they? (The two largest industrial buildings were built in
-**2022 and 2024** — industrial investment in this district is not history.
-The third-largest is from **1920** at a built FAR of 4.18 — old stock can be
-intense stock.)
+4. Now cross-reference the documents you distilled in segment 3. Two flags
+   your agent's memory knows:
+   - **Still-industrial** (LandUse 06): the NYC Industrial Plan wants these
+     retained — yet they now sit in rezoned districts. **186 rezoned sites
+     include 103 still in industrial use.**
+   - **Pre-1950 vintage**: 131 of the rezoned sites. That's roughly a century
+     of industrial history — exactly the exposure pathway the FEIS
+     hazardous-materials chapter describes. **E-848 requires a Phase I
+     Environmental Site Assessment and remediation before ground
+     disturbance.** 77 sites are both pre-1950 *and* still industrial.
 
-**What to notice:** the industrial core's position relative to the blocks
-OneLIC upzoned for housing. Edge pressure looks different from above.
+5. **The question the map answers:** where do a rezoning's development
+   pressure, the citywide Plan's retention goal, and the EIS's hazmat
+   constraints land on the same parcel? Find the most intense
+   still-industrial site and note its vintage. *(The answer key: a 1922
+   building at FAR 5.6 — the most intense industrial building in the
+   rezoned set is also a century old. Intensity, retention policy, and
+   E-848 all meet on one lot.)*
 
-*Basemap: Esri World Light Gray Canvas — attribution "Esri, HERE, Garmin,
-FAO, NOAA, USGS, © OpenStreetMap contributors" (a habit worth noticing:
-every basemap you use in practice carries one).*
+**Label interpretation as interpretation.** "This 1922 factory is a prime
+E-848 candidate" is a planner's inference from age and use — the FEIS
+assigns E-848 to development sites, not to MapPLUTO records. Say which is
+which. That distinction is the habit the whole lab has been building.
 
 **Close the lab with one sentence** — written by you, checked against your
 agent's memory entry: one mapped fact, one policy fact, and what they mean
 for the IBZ together.
+
+*Basemap: Esri World Light Gray Canvas — attribution "Esri, HERE, Garmin,
+FAO, NOAA, USGS, © OpenStreetMap contributors" (a habit worth noticing:
+every basemap you use in practice carries one).*
 
 ---
 
