@@ -97,16 +97,20 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 **The lab's wow moment.** Everything so far happened in chat; now the agent reaches out and drives an actual GIS application, and the map renders back into the conversation. The chat is the interface; the tools are real — that's the takeaway of the whole lab.
 
 **The prompt (student gives it verbatim):**
-> Using the parcel file at `<clone>/data/lic_ibz_parcels.geojson`, set up a RustGIS map of the Long Island City IBZ sites modified by the OneLIC rezoning: filter to the paired zoning districts (ZoneDist1 of M1-4A, M1-5A, or M1-6A — the paired manufacturing/residential districts OneLIC created), add a greyscale Esri basemap, apply a graduated color scheme based on BuiltFAR, and render the map. Then tell me: how many sites, how many are still industrial (LandUse 06), how many predate 1950, and which still-industrial site has the highest BuiltFAR and what year was it built?
+> Using the parcel file at `<clone>/data/lic_ibz_parcels.geojson`, set up a RustGIS map of the sites the OneLIC rezoning actually changed. The rezoning replaced zoning permission: max commercial/manufacturing FAR is now 5.0 in M1-4A, 6.5 in M1-5A, and 8.0 in M1-6A (FEIS, land-use chapter, pp. 56–58). Compute each rezoned parcel's unused development permission — the cap minus its BuiltFAR — filter to the paired districts (ZoneDist1 M1-4A, M1-5A, M1-6A), add a greyscale Esri basemap, apply a graduated color scheme on that headroom, and render the map. Then tell me: total unused permission in square feet, how it compares to the building stock that exists today, how many parcels, and which single parcels carry the most new permission.
 
-**What the agent must chain (the tool sequence):** terminal (filter GeoJSON to M1A districts → rezoned layer) → rustgis `layer.addData` → `map.addTiles` (Esri Light Gray raster) → `layer.symbology` (graduated, BuiltFAR, 5 quantile classes) → `layer.zoomTo` → `view_map` (the map renders as an image in the chat).
+**What the agent must chain (the tool sequence):** terminal (filter GeoJSON to M1A districts + derive Headroom = FEIS cap − BuiltFAR → headroom layer) → rustgis `layer.addData` → `map.addTiles` (Esri Light Gray raster) → `layer.symbology` (graduated, Headroom, 5 quantile classes) → `layer.zoomTo` → `view_map` (the map renders as an image in the chat).
 
-**Verified answers (the key):**
+**Verified answers (the key — corrected to headroom, 2026-10-14):**
 - **186 rezoned parcels**: M1-5A = 83, M1-4A = 66, M1-6A = 37
-- **103 of 186 still industrial** (LandUse 06) — Industrial Plan retention goal meets OneLIC's upzoning
-- **131 of 186 pre-1950** — industrial history → E-848 hazmat consideration (Phase I ESA + remediation before ground disturbance); **77 sites are both**
-- **Most intense still-industrial rezoned site: a 1922 building at FAR 5.6** (BBL 4004090001, 112,000 sf); runners-up 1925 @ FAR 5.2, 1930 @ FAR 4.76
-- Intensity concentrates along the waterfront edge of the southern cluster (verified in the MCP render)
+- **Permitted FAR caps (FEIS land-use chapter, pp. 56–58, extracted with pymupdf):** M1-4A = 5.0, M1-5A = 6.5, M1-6A = 8.0 (max commercial/manufacturing; paired residential components separate, e.g. M1-4A/R8A up to 7.2 with IH)
+- **Headroom = cap − BuiltFAR = unused development permission. Total: 12,960,567 sf vs 4,343,521 sf of buildings standing today — the rezoning tripled development capacity on those parcels alone.**
+- Single biggest headroom parcels: **BBL 4004260010 (M1-6A, FAR 0, 56,000 sf lot) = ~0.45 M sf of new permission**; 4004260075 = 0.17 M sf; the Dutch-Kills IBZ component is essentially all high-headroom
+- Quantile breaks: 0.00–3.40 / 3.43–4.07 / 4.10–5.42 / 5.43–5.85 / 5.86–8.00
+- Context flags (unchanged from the earlier key): **103 of 186 still industrial** (LandUse 06), **131 pre-1950**, **77 both** — and the 1922 factory at FAR 5.6 carries almost NO headroom under its 6.5 cap (retention protection and hazmat history on a lot the rezoning barely adds capacity to — different tension, same parcel)
+
+**Method notes (state as part of the map's claim):** caps documented from the FEIS; residential component excluded from the commercial/manufacturing cap (stated simplification); parcels built over cap clamp to 0; headroom assumes build-out to the cap (interpretation, labeled as such). BuiltFAR was contextual, never the change.
+**Validation note:** the laguna MCP-chain pass validated the BuiltFAR variant; the headroom variant adds one derivation step and has **not** been model-validated yet — flagged for retest.
 
 **Teaching points:**
 - The agent drove real GIS software from a chat prompt — MCP tool-chaining is the mechanism, and it's the same pattern for any tool a practice has (CAD, energy models, databases).

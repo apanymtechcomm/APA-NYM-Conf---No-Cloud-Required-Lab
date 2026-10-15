@@ -144,13 +144,16 @@ print from the script). Then type `/reload-mcp` in your session.
 
 ```
 Using the parcel file at <your clone path>/data/lic_ibz_parcels.geojson, set
-up a RustGIS map of the Long Island City IBZ sites modified by the OneLIC
-rezoning: filter to the paired zoning districts (ZoneDist1 of M1-4A, M1-5A,
-or M1-6A — the paired manufacturing/residential districts OneLIC created),
-add a greyscale Esri basemap, apply a graduated color scheme based on
-BuiltFAR, and render the map. Then tell me: how many sites, how many are
-still industrial (LandUse 06), how many predate 1950, and which
-still-industrial site has the highest BuiltFAR and what year was it built?
+up a RustGIS map of the sites the OneLIC rezoning actually changed. The
+rezoning replaced zoning permission: max commercial/manufacturing FAR is now
+5.0 in M1-4A, 6.5 in M1-5A, and 8.0 in M1-6A (FEIS, land-use chapter,
+pp. 56-58). Compute each rezoned parcel's unused development permission —
+the cap minus its BuiltFAR — filter to the paired districts (ZoneDist1
+M1-4A, M1-5A, M1-6A), add a greyscale Esri basemap, apply a graduated color
+scheme on that headroom, and render the map. Then tell me: total unused
+permission in square feet, how it compares to the building stock that exists
+today, how many parcels, and which single parcels carry the most new
+permission.
 ```
 
 **What you should see:** the agent chains real tools — it filters the data,

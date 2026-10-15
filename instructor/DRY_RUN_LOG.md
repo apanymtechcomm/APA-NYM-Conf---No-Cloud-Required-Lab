@@ -212,3 +212,4 @@ Student prompt + audit list updated; teacher note: BuiltFAR was context, not
 the change. Map engine-verified via MCP (graduated on Headroom, 5 quantile
 classes); MODEL RE-VALIDATION of the headroom prompt NOT yet run — the earlier
 laguna pass validated the BuiltFAR variant. Retest flagged.
+Instructor LESSON_PLAN/STUDENT_PROMPTS synced to the headroom prompt + key (segment 6). Student-facing STUDENT_LESSON.md already headroom-corrected.
