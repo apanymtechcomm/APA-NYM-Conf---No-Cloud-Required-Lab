@@ -86,18 +86,43 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 
 **Provenance note (tested):** the ULURP application numbers (C 250176 ZMQ, N 250177 ZRQ) are ZAP project metadata — they do **not** appear in the PDFs. Do not require students to cite them; if the agent can't find them, that is correct behavior, and it's a live lesson in "what the documents actually say vs. what the project page says." Instructor may supply them verbally.
 
-### 16:00–19:00 — Compare citywide and neighborhood policy (tightened)
+### 16:00–18:30 — Compare citywide and neighborhood policy (tightened)
 **Prompt 5:**
 > Using only the OneLIC plan and the NYC Industrial Plan you read, produce a two-column table: policies that strengthen industrial activity and policies that may increase conversion or compatibility pressure. The Industrial Plan has 5 goals, 20 strategies, and 72 ideas and protects 17,000+ acres; OneLIC was adopted 2025-11-12 with ~14,700 homes. If a number in the documents disagrees with these, flag it — but don't spend the segment hunting for discrepancies. Label direct document findings separately from your interpretation.
 
 **Why worded this way:** the original open-ended version made the model explore (measured 5.5 min on the primary model, over budget). A first fix told it to *verify* the counts in the documents — which caused the same overrun, because verification means extra searches. Giving the counts as stated facts with a light flag-if-you-see-it instruction keeps the segment inside budget without doing the thinking for the model.
 **Expected:** the two-column table; 17,000+ acres protected; **Primary/Secondary Industrial Areas stated explicitly as policy guideposts, not zoning**; OneLIC edge housing vs. core holding. (Bonus if flagged: the plan text says "72 ideas" while the city's project page says "73 recommendations.")
 
-### 19:00–20:00 — Planning judgment
-**Prompt 6:**
-> Write a five-sentence planning recommendation for the Long Island City IBZ. Include one MapPLUTO finding, one OneLIC/EIS finding, one Industrial Plan finding, one data limitation, and one next analysis to perform.
+### 18:30–20:00 — Map the IBZ's key properties (RustGIS; the finale)
+**This segment is student-driven — no agent.** Sometimes the planner's eye on a map is the tool; it also closes the lab with the human judgment the lab has been building toward.
 
-**Expected:** concise evidence-based recommendation; at least one explicit limitation (PLUTO has no occupancy data); a defensible next step (E-848 parcel-level contamination review, truck/loading analysis, business outreach, employment data).
+**The link (loads the 1,176 IBZ lots into the RustGIS web app — nothing to install):**
+`https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson`
+
+Verified working (2026-10-14): the `?data=` parameter is documented RustGIS behavior; the app fetched the GeoJSON (772 KB, CORS-open via GitHub raw) on first load. Fallback if the link is slow in a room: students download `data/lic_ibz_parcels.geojson` from the repo and drop the file onto the map — same result, and it teaches the app's native drag-drop.
+
+**Exercise:**
+1. Open the link (appears with the parcels on a basemap).
+2. Attribute table → filter to **LandUse 06** → sort by **BldgArea** descending.
+3. Click the top result, find it on the map, note **YearBuilt**.
+4. Pan between the big sites — do they cluster?
+
+**Verified answers (top 5 industrial by building area):**
+| BBL | BldgArea | YearBuilt | BuiltFAR | Note |
+|---|---|---|---|---|
+| 4000680038 | 777,258 sf | **2022** | 3.82 | newest of the big five |
+| 4002940106 | 654,615 sf | **2024** | 3.40 | entirely factory use |
+| 4004760001 | 407,140 sf | **1920** | 4.18 | century-old, still intense |
+| 4002500001 | 322,390 sf | 1924 | 2.69 | |
+| 4002450009 | 301,000 sf | 1951 | 3.54 | 175,200 sf factory |
+
+**Teaching points:**
+- The two largest industrial buildings postdate the IBZ by more than a decade — industrial investment is current, not historical. The "dying industrial district" narrative does not survive contact with the map.
+- Old ≠ obsolete: the 1920 parcel carries the highest FAR of the five.
+- Edge pressure (OneLIC's housing capacity) reads differently once students see where the industrial core actually sits.
+
+**Close:** one sentence written by the student — one mapped fact + one policy fact + what they mean together, checked against the agent's memory entry from segment 3.
+
 
 ---
 

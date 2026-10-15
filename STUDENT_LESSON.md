@@ -122,7 +122,7 @@ building-envelope attenuation; significant adverse transportation and
 mobile-source noise impacts were found (some remain unavoidable even after
 mitigation).
 
-### 5. Compare citywide and neighborhood policy (16:00–19:00)
+### 5. Compare citywide and neighborhood policy (16:00–18:30)
 
 ```
 Using only the OneLIC plan and the NYC Industrial Plan you read, produce a
@@ -139,16 +139,36 @@ interpretation.
 172 of 2023) protects 17,000+ acres of designated industrial land — but its
 Primary/Secondary Industrial Areas are policy guideposts, **not** zoning.
 
-### 6. Planning judgment (19:00–20:00)
+### 6. Map the IBZ's key properties (18:30–20:00)
 
-```
-Write a five-sentence planning recommendation for the Long Island City IBZ.
-Include one MapPLUTO finding, one OneLIC/EIS finding, one Industrial Plan
-finding, one data limitation, and one next analysis to perform.
-```
+**This segment you drive yourself — no agent.** Sometimes the planner's eye on
+a map is the tool.
 
-(Your distilled findings are already saved in the agent's memory from segment
-3 — it can build on them.)
+1. Open this link — it loads the IBZ's 1,176 tax lots into the RustGIS web
+   app (nothing to install; basemap loads with it):
+
+   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson**
+
+   (Fallback: download `data/lic_ibz_parcels.geojson` from this repo and drop
+   the file onto the map.)
+
+2. Open the attribute table, filter to **LandUse 06** (industrial), and sort
+   by **BldgArea** descending.
+3. Click the top result and find it on the map. Note its **YearBuilt**.
+4. Pan to the other big sites — do they cluster?
+
+**The question the map answers:** where are the IBZ's major industrial sites,
+and how old are they? (The two largest industrial buildings were built in
+**2022 and 2024** — industrial investment in this district is not history.
+The third-largest is from **1920** at a built FAR of 4.18 — old stock can be
+intense stock.)
+
+**What to notice:** the industrial core's position relative to the blocks
+OneLIC upzoned for housing. Edge pressure looks different from above.
+
+**Close the lab with one sentence** — written by you, checked against your
+agent's memory entry: one mapped fact, one policy fact, and what they mean
+for the IBZ together.
 
 ---
 

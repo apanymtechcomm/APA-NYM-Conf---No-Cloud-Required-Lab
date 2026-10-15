@@ -24,8 +24,10 @@ sources/                   ← the 8 original planning PDFs the summaries cite
 data/
   lic_ibz_parcels.csv      ← MapPLUTO 26v2 clipped to the official NYCEDC
                              LIC IBZ boundary (1,176 lots)
+  lic_ibz_parcels.geojson  ← same lots with geometry, for the mapping segment
 instructor/                ← for the person teaching it
   LESSON_PLAN.md            timed plan with verified answers + teaching points
+  STUDENT_PROMPTS.md        the prompts as a standalone sheet
   PRE_STAGING_CHECKLIST.md  distribution, day-of checks, timing guidance
   DRY_RUN_LOG.md            full evidence trail: sources, hashes, verified
                             search results, test runs
@@ -36,10 +38,13 @@ instructor/                ← for the person teaching it
 Students characterize the existing industrial stock of the LIC IBZ from a
 pre-clipped MapPLUTO parcel file, read three planning documents (the OneLIC
 rezoning, its EIS, and the NYC Industrial Plan) through pre-assembled
-summaries, distill the findings into the agent's small memory system, and
-finish with a five-sentence planning recommendation. The memory-distillation
-step is the architectural lesson: a 60 MB PDF doesn't fit in a ~2,200-character
-memory — deciding what survives is the skill.
+summaries, distill the findings into the agent's small memory system, compare
+neighborhood vs. citywide policy — then close by **mapping the IBZ's key
+properties** in the RustGIS web app: where are the major industrial sites, how
+old are they, and where does the OneLIC housing capacity press against the
+industrial core? The memory-distillation step is the architectural lesson: a
+60 MB PDF doesn't fit in a ~2,200-character memory — deciding what survives is
+the skill.
 
 ## Key verified numbers
 
@@ -49,6 +54,8 @@ memory — deciding what survives is the skill.
   income-restricted; IBZ industrial subareas stay nonresidential
 - NYC Industrial Plan: final 2025-12-19 (LL 172 of 2023); 5 goals, 20
   strategies, 72 ideas per the plan text; 17,000+ acres protected
+- Two largest industrial buildings: built **2022** and **2024** — investment
+  is current, not historical
 
 ## Model recommendation (tested, not guessed)
 
@@ -62,6 +69,6 @@ The `sources/` folder holds the eight original planning PDFs the summaries were
 built from — the OneLIC Final Plan Book, six FEIS chapters (CEQR 25DCP001Q),
 and the final NYC Industrial Plan — all downloaded from official NYC sources;
 URLs, hashes, and per-file details in `instructor/DRY_RUN_LOG.md`. The parcel
-CSV is MapPLUTO 26v2 (August 2026 vintage) clipped to the official NYCEDC IBZ
-boundary. The lab package was built and validated 2026-10-14; test evidence in
-`instructor/`.
+CSV and GeoJSON are MapPLUTO 26v2 (August 2026 vintage) clipped to the official
+NYCEDC IBZ boundary. The lab package was built and validated 2026-10-14; test
+evidence in `instructor/`.

@@ -14,6 +14,7 @@ two files and smoke-testing the models.
 | `summaries/OneLIC_Summary.md` | 2.6 KB | Pre-assembled summary of the OneLIC rezoning — every fact cited to its source. |
 | `summaries/FEIS_25DCP001Q_Summary.md` | 3.9 KB | Pre-assembled summary of the OneLIC EIS (six chapters consolidated). |
 | `summaries/NYC_Industrial_Plan_Summary.md` | 2.4 KB | Pre-assembled summary of the NYC Industrial Plan. |
+| `data/lic_ibz_parcels.geojson` | 0.8 MB | Same 1,176 lots with geometry — powers the segment-6 RustGIS map via a `?data=` link to this repo's raw file (or drag-drop). |
 | `doc-pack.zip` *(optional)* | 143.7 MB | The eight source PDFs. Not required to run the lab — for citation verification and deep-dives. Zip integrity verified. |
 
 **Required distribution is ~9 KB** (CSV + three summaries). Students point
@@ -45,7 +46,12 @@ How these were built (for your records, all reproducible):
 - [ ] **read_file works on the PDFs** — open one FEIS chapter in the student
       agent (the tool extracts PDF text natively; no extra software needed).
       Verified: `25DCP001Q_FEIS_10_Hazardous Materials.pdf` extracts cleanly.
-- [ ] **Students' Hermes sessions** have terminal + file + memory toolsets;
+- [ ] **Mapping segment link** — open
+      https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson
+      and confirm the IBZ parcels render on the basemap (verified working
+      2026-10-14: the app fetches the GeoJSON from raw.githubusercontent.com,
+      CORS-open; drag-drop fallback = `data/lic_ibz_parcels.geojson`)
+- [ ] **Hermes fresh session** with terminal + file + memory toolsets;
       student model pinned in config, not left on the session default
 - [ ] **Offline fallback** — everything the lab needs is in the two distributed
       files; if NYC sites are down, the lab still runs end-to-end
