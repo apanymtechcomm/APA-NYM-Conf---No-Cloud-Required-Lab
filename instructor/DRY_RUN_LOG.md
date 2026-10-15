@@ -167,3 +167,20 @@ A generic query such as `"OneLIC Final Environmental Impact Statement"` did **no
 - **Pipeline metadata limitation:** file ingestion records the ingestion date rather than the source publication date and leaves the `url` field empty. Official source dates and URLs are preserved in this log.
 mapping-segment composite verified via MCP render: parcels + IBZ boundary + Esri Light Gray; segment 6 conflict-map key: 186 rezoned / 103 industrial / 131 pre-1950 / 77 both; key finding = 1922 building FAR 5.6 (BBL 4004090001).
 segment-6 finale flipped to agent-driven (Andrew's wow-factor request): one student prompt, agent chains terminal + rustgis MCP (layer.addData → map.addTiles Esri Light Gray → layer.symbology graduated BuiltFAR → view_map), map renders in chat. rustgis-mcp MCP is the tool-link; scripts/setup-rustgis-mcp.sh installs it one-command (v0.2.0, linux/macos/windows paths). laguna validation run dispatched 2026-10-14 (deleg_ac3dd013); results to be folded in when it lands. Browser ?data= link kept as fallback. Key: 186 rezoned (M1-5A=83, M1-4A=66, M1-6A=37) / 103 industrial / 131 pre-1950 / 77 both / key site = 1922 building FAR 5.6 BBL 4004090001.
+
+## Finale validation — laguna-s-2.1:free (2026-10-14, PASSED)
+
+Fresh session given the verbatim segment-6 prompt (terminal + rustgis MCP
+available). No improvisation needed:
+- terminal filter: 186 rezoned sites (M1-5A=83, M1-4A=66, M1-6A=37), cross-checked
+  against the RustGIS layer's own 186-feature count
+- layer.addData → map.addTiles (Esri Light Gray raster, attribution, replace) →
+  layer.symbology (graduated, BuiltFAR, 5 quantile classes) → layer.zoomTo → view_map
+- All five stats match the key exactly: 186 / 103 industrial / 131 pre-1950 /
+  FAR 5.6 / BBL 4004090001 / 1922
+- ~105 s end-to-end (just over the 90 s segment budget; inside the 25-30 min
+  first-run planning window)
+- Independently verified render: greyscale basemap + graduated ramp (salmon →
+  magenta) + IBZ boundary; saved as instructor/finale_model_map.png
+- Observed gap (now an audit-list item): the map had no legend explaining the
+  color ramp — students should ask the agent to add one.

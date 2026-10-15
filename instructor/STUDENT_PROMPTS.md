@@ -166,6 +166,9 @@ tool:
   watermark tiles — if you see that, the agent substituted a dead basemap.)
 - Where does intensity concentrate — and does that match the policy story
   from segment 5?
+- Does the map **explain itself**? (A graduated ramp needs a legend saying
+  what the colors mean and what BuiltFAR is — if the agent skipped one, that's
+  a cartographic miss worth asking it to fix.)
 
 **The synthesis question (and your closing sentence):** where do
 development pressure, the Industrial Plan's retention goal, and the EIS's

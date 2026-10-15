@@ -114,7 +114,7 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 - E-848 applies to FEIS development sites, not MapPLUTO records — age/use flags are interpretation. Label which is which.
 - The student still writes the closing sentence: one mapped fact + one policy fact + what they mean together. The agent set up the map; the judgment is the planner's.
 
-**Validation status:** laguna-s-2.1:free test run in progress at build time (2026-10-14) — a fresh session given the verbatim prompt with the rustgis MCP + terminal available; results folded into the session notes when it lands. Manual fallback if the MCP can't be installed or driven: the agent opens the pre-built `?data=` map link (parcels + boundary + greyscale `?tiles=`) in a browser — same map, less wow.
+**Validation status (2026-10-14, laguna-s-2.1:free):** PASSED. A fresh session given the verbatim prompt chained the full sequence with no improvisation — terminal filter (186 sites, cross-checked against the layer's own 186-feature count) → `layer.addData` → `map.addTiles` Esri Light Gray → `layer.symbology` graduated/quantile/BuiltFAR/5 classes → `layer.zoomTo` → `view_map`. All five stats matched the key exactly. **~105 seconds end-to-end** (just over the 90-second segment budget — inside the lab's stated 25–30-minute first-run window; if time is tight, the segment can absorb it). Model render: `instructor/finale_model_map.png`. Manual fallback if the MCP can't be installed or driven: the agent opens the pre-built `?data=` map link (parcels + boundary + greyscale `?tiles=`) in a browser — same map, less wow.
 
 
 ---
