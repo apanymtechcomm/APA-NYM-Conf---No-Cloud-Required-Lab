@@ -24,7 +24,11 @@ sources/                   ← the 8 original planning PDFs the summaries cite
 data/
   lic_ibz_parcels.csv      ← MapPLUTO 26v2 clipped to the official NYCEDC
                              LIC IBZ boundary (1,176 lots)
-  lic_ibz_parcels.geojson  ← same lots with geometry, for the mapping segment
+  lic_ibz_parcels.geojson  ← same lots with geometry, for the finale
+  ibz_boundary.geojson     ← the official NYCEDC IBZ boundary
+scripts/
+  setup-rustgis-mcp.sh     ← one-command install of the RustGIS MCP server
+                             (for the finale: the agent drives real GIS)
 instructor/                ← for the person teaching it
   LESSON_PLAN.md            timed plan with verified answers + teaching points
   STUDENT_PROMPTS.md        the prompts as a standalone sheet
@@ -39,12 +43,13 @@ Students characterize the existing industrial stock of the LIC IBZ from a
 pre-clipped MapPLUTO parcel file, read three planning documents (the OneLIC
 rezoning, its EIS, and the NYC Industrial Plan) through pre-assembled
 summaries, distill the findings into the agent's small memory system, compare
-neighborhood vs. citywide policy — then close by **mapping the IBZ's key
-properties** in the RustGIS web app: where are the major industrial sites, how
-old are they, and where does the OneLIC housing capacity press against the
-industrial core? The memory-distillation step is the architectural lesson: a
-60 MB PDF doesn't fit in a ~2,200-character memory — deciding what survives is
-the skill.
+neighborhood vs. citywide policy — then close with the finale: **one prompt,
+and the agent drives real GIS software.** It filters the data, opens RustGIS
+through the MCP tool-link, applies a graduated color scheme by BuiltFAR to
+the OneLIC-rezoned sites, and renders the map back into the chat. That's the
+takeaway: the chat is the interface, but the tools are real. The
+memory-distillation step is the architectural lesson: a 60 MB PDF doesn't fit
+in a ~2,200-character memory — deciding what survives is the skill.
 
 ## Key verified numbers
 
