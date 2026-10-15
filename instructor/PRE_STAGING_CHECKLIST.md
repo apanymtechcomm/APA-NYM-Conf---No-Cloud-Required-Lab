@@ -47,10 +47,13 @@ How these were built (for your records, all reproducible):
       agent (the tool extracts PDF text natively; no extra software needed).
       Verified: `25DCP001Q_FEIS_10_Hazardous Materials.pdf` extracts cleanly.
 - [ ] **Mapping segment link** — open
-      https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson
-      and confirm the IBZ parcels render on the basemap (verified working
-      2026-10-14: the app fetches the GeoJSON from raw.githubusercontent.com,
-      CORS-open; drag-drop fallback = `data/lic_ibz_parcels.geojson`)
+      https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}
+      and confirm the IBZ parcels render on the greyscale basemap (data fetch
+      verified 2026-10-14; tile template engine-verified via MCP; if the
+      basemap is blank, manual path: Home › Add › Basemap › Add Tile Layer →
+      paste
+      `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+      drag-drop fallback = `data/lic_ibz_parcels.geojson`)
 - [ ] **Hermes fresh session** with terminal + file + memory toolsets;
       student model pinned in config, not left on the session default
 - [ ] **Offline fallback** — everything the lab needs is in the two distributed

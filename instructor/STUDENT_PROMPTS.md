@@ -134,12 +134,15 @@ Primary/Secondary Industrial Areas are policy guideposts, **not** zoning.
 a map is the tool.
 
 1. Open this link — it loads the IBZ's 1,176 tax lots into the RustGIS web
-   app (nothing to install; basemap loads with it):
+   app on a clean greyscale basemap (nothing to install):
 
-   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson**
+   **https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}**
 
-   (Fallback: download `data/lic_ibz_parcels.geojson` from the lab repo and
-   drop the file onto the map.)
+   (Fallback if the basemap doesn't appear: open web.rustgis.app, then
+   **Home › Add › Basemap › Add Tile Layer** and paste
+   `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`
+   — or download `data/lic_ibz_parcels.geojson` from the lab repo and drop
+   the file onto the map.)
 
 2. Open the attribute table, filter to **LandUse 06** (industrial), and sort
    by **BldgArea** descending.

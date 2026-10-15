@@ -96,10 +96,10 @@ stock (1940 median, FAR 1.05) is not automatically redevelopment-ready.
 ### 18:30–20:00 — Map the IBZ's key properties (RustGIS; the finale)
 **This segment is student-driven — no agent.** Sometimes the planner's eye on a map is the tool; it also closes the lab with the human judgment the lab has been building toward.
 
-**The link (loads the 1,176 IBZ lots into the RustGIS web app — nothing to install):**
-`https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson`
+**The link (loads the 1,176 IBZ lots into the RustGIS web app on a greyscale basemap — nothing to install):**
+`https://web.rustgis.app/?data=https://raw.githubusercontent.com/apanymtechcomm/lic-ibz-lab/main/data/lic_ibz_parcels.geojson&tiles=https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`
 
-Verified working (2026-10-14): the `?data=` parameter is documented RustGIS behavior; the app fetched the GeoJSON (772 KB, CORS-open via GitHub raw) on first load. Fallback if the link is slow in a room: students download `data/lic_ibz_parcels.geojson` from the repo and drop the file onto the map — same result, and it teaches the app's native drag-drop.
+**Verification status (2026-10-14):** `?data=` verified working in the web app (app fetches the GeoJSON). `?tiles=` is a documented RustGIS URL parameter and the Esri template was rendered end-to-end through the same engine via the MCP server (clean greyscale, no watermarks, CORS-open, keyless). The web app's tile-param render could not be visually confirmed from the automated browser (WASM/CDP daemon timeouts; worker fetches invisible to performance entries) — the morning-of checklist has a one-click check. **Manual fallback (always works): Home › Add › Basemap › Add Tile Layer → paste the tile URL**, or students drop `data/lic_ibz_parcels.geojson` onto the map.
 
 **Exercise:**
 1. Open the link (appears with the parcels on a basemap).
